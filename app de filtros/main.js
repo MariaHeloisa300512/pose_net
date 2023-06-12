@@ -1,34 +1,43 @@
-var focinhoImg;
-focinhoX = 0;
-focinhoY = 0;
+let clownNose;
+noseX = 0;
+noseY = 0;
 
-function preload(){
-    focinhoImg = loadImage('https://i.postimg.cc/nLbyDDNp/focinho-Cachorro-removebg-preview.png')
+function preload() {
+    clownNose = loadImage('https://i.postimg.cc/7ZBcjDqp/clownnose.png');
 }
-function setup(){
-    canvas = createCanvas(300,300);
-    canvas.center();
-    video = createCapture(300,300);
-    video.hide();
-    poseNet = ml5.poseNet(video, modelLoaded);
-    poseNet.on('pose', gotPoses)
+
+function setup() {
+  canvas = createCanvas(300, 300);
+  canvas.position(600, 250);
+  video = createCapture(VIDEO);
+  video.size(300, 300);
+  video.hide();
+  clownNose.resize(100, 100, p5.prototype.AUTO);
+
+  poseNet = ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose', gotPoses);
+  
 }
-function modelLoaded(){
-    console.log('poseNet foi inicializado')
+
+function modelLoaded() {
+  console.log('PoseNet foi inicializado');
 }
-function gotPoses(results){
-    if(results.length > 0){
-        focinhoX = results[0].pose.nose.x - 15;
-        focinhoY = results[0].pose.nose.y - 1;
-    }
+
+function gotPoses(results) {
+  if (results.length > 0) {
+    console.log(results);
+    noseX = results[0].pose.nose.x - 15;
+    noseY = results[0].pose.nose.y - 15;
+  }
 }
-function draw(){
-    image(video, 0,0,300,300);
-    image(focinhoImg, focinhoX, focinhoY,50, 50);
+
+function draw() {
+  image(video, 0, 0, 300, 300);
+  image(clownNose, noseX, noseY, 30, 30);
 }
-function takeSnapshot(){
-    save('myFilterImage.png');
+
+function takeSnapshot() {
+  save('myFilterImage.png');
 }
-function windowResized(){
-    resizeCanvas(windowWidth, windowHeight);
-}
+
+
