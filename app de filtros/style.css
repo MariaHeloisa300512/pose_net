@@ -1,0 +1,25 @@
+body{
+    background-image: url(planodefundo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+h1{
+    font-family: 'Monoton', cursive;
+    font-size:55px;
+    color:rgb(54, 9, 9)
+}
+#botao{
+    display: inline-block;
+    padding:10px 20px;
+    background-color: #ff0800;
+    color: #fff;
+    border-radius:4px;
+    text-decoration:none;
+    font-size: 16px;
+    margin-top:10px;
+    font-weight:bold;
+}
+#botao:hover{
+    background-color:#ff7733;
+}
